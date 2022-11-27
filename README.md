@@ -54,7 +54,7 @@
 **Data constraints**
 
 ```json
-}
+{
     "file": "file"
 }
 ```
@@ -74,7 +74,7 @@
 **Data constraints**
 
 ```json
-}
+{
     "path": "string"
 }
 ```
