@@ -37,7 +37,7 @@
 
 ```json
 {
-    "dir": string
+    "dir": "string"
 }
 ```
 
@@ -55,7 +55,7 @@
 
 ```json
 }
-    "file": file
+    "file": "file"
 }
 ```
 
@@ -75,7 +75,7 @@
 
 ```json
 }
-    "path": string
+    "path": "string"
 }
 ```
 
