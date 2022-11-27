@@ -1,6 +1,11 @@
 # micro-backdoor
 
 Для запуска приложения:
+
+``
+    npm install
+``
+
 ``
     node index.js
 ``
