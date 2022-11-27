@@ -1,17 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <h1>Hello world</h1>
-        <ul>
+<div class="m-4 container">
+    <div class="col-6">
+        <h2>Путь: <span class="badge bg-secondary"><%= filePath %> </span></h2>
+        <ul class="list-group">
             <% for (let file of list) {%>
-            <li><%= file %></li>
+            <li class="list-group-item">
+                <% if (file.type == "file") {%> <%= file.name %> <% } else {%>
+                <a href="/show/<%= filePath.slice(8) + file.name %>"><%= file.name %></a> <% }%>
+                <div class="btn-group float-end" role="group">
+                    <button
+                        type="button"
+                        class="btn btn-danger btn-sm"
+                        onclick="del(`<%= filePath + file.name %>`)"
+                    >
+                        Удалить
+                    </button>
+                    <% if ((file.type == "file")) { %>
+                    <button
+                        type="button"
+                        class="btn btn-success btn-sm"
+                        onclick="location.href='/download/<%= filePath + '/' + file.name %>'"
+                    >
+                        Скачать
+                    </button>
+                    <% } %>
+                </div>
+            </li>
             <% } %>
         </ul>
-    </body>
-</html>
+    </div>
+    <%- include("./partials/new-folder") %>
+    <%- include("./partials/file-upload") %>
+    <script>
+        function del(path) {
+            const data = {
+                path: path,
+            };
+            const url = "/delete";
+            fetch(url, {
+                method: "POST",
+                body: new URLSearchParams(data),
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            });
+            location.reload();
+        }
+    </script>
+</div>

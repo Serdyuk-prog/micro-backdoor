@@ -1,0 +1,46 @@
+<div class="container px-0 mt-4">
+    <div class="col-6">
+        <p class="mb-0">Загрузить файл в текущую директорию</p>
+        <form
+            class="container mt-2 px-0"
+            id="uploadFileForm"
+            action="/new-file/<%= filePath %>"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+            <fieldset class="input-group">
+                <input
+                    class="form-control"
+                    id="uploadedFile"
+                    type="file"
+                    name="uploadFile"
+                    required
+                />
+                <button
+                    class="btn btn-primary bg-black"
+                    type="submit"
+                    id="loadButton"
+                >
+                    <span
+                        id="submit-spinner"
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                        hidden
+                    ></span>
+                    Загрузить
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script>
+    const form = document.getElementById("uploadFileForm");
+    const submitBtn = document.getElementById("loadButton");
+
+    form.addEventListener("submit", (event) => {
+        submitBtn.classList.add = "disabled";
+        submitBtn.disabled = true;
+        document.getElementById("submit-spinner").hidden = false;
+    });
+</script>

@@ -1,0 +1,46 @@
+<div class="container px-0 mt-4">
+    <div class="col-6">
+        <p class="mb-0">Создать новую папку в текущей директории</p>
+        <form
+            class="container mt-2 px-0"
+            id="new-folder-form"
+            action="/new-folder"
+            method="POST"
+            enctype="multipart/form-data"
+            onsubmit="newFolder(event)"
+        >
+            <fieldset class="input-group">
+                <input
+                    class="form-control"
+                    id="folder-name"
+                    type="text"
+                    name="name"
+                    required
+                />
+                <button class="btn btn-primary bg-black" type="submit">
+                    Создать
+                </button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script>
+    function newFolder(event) {
+        event.preventDefault();
+        const data = {
+            dir:
+                window.location.pathname +
+                "/" +
+                document.getElementById("folder-name").value,
+        };
+        const url = "/new-folder";
+        fetch(url, {
+            method: "POST",
+            body: new URLSearchParams(data),
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+        });
+        location.reload();
+    }
+</script>
